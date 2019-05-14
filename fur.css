@@ -2,6 +2,8 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
+  touch-action: none;
+  overscroll-behavior: none;
   background: center / cover no-repeat url("https://i.imgur.com/2w5dpWI.jpg");
 }
 
