@@ -13,7 +13,9 @@ document.body.addEventListener('pointerdown',function(e){
 
 document.body.addEventListener('pointermove', function(e) {
   try {
-    window.navigator.vibrate(8);
+    var clampedTopPressureRange = Math.min(Math.max(
+      (e.pressure-0.5) * 2, .1), 1);
+    window.navigator.vibrate(clampedTopPressureRange*10);
   }
   catch (err) {
     // we reduce the severity of failures here because sometimes
