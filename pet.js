@@ -1,13 +1,10 @@
+// NOTE: errors kicked to console.info are ones that have a tendency
+// not to fire the first few times they're called, due to page restrictions on
+// what can be triggered without a user event.
+
 document.body.addEventListener('pointerdown',function(e){
   if (document.fullscreenEnabled && !document.fullscreenElement) {
-    try {
-      document.body.requestFullscreen();
-    } catch(err) {
-      // we reduce the severity of failures here because sometimes
-      // the page just isn't ready for it yet,
-      // and this stops the debugger from pausing, etc.
-      console.info(err);
-    }
+      document.body.requestFullscreen().catch(console.info);
   }
 });
 
@@ -18,9 +15,6 @@ document.body.addEventListener('pointermove', function(e) {
     window.navigator.vibrate(clampedTopPressureRange*10);
   }
   catch (err) {
-    // we reduce the severity of failures here because sometimes
-    // the page just isn't ready for it yet,
-    // and this stops the debugger from pausing, etc.
     console.info(err);
   }
 });
